@@ -1,20 +1,28 @@
-<h2>la liste des conferences</h2>
-<Table border="1">
+{% extends "base.html" %}
+{% block content %}
+<h2>La liste des conférences</h2>
+<table border="1">
   <tr>
-    <td>title</td>
-    <td>location</td>
-    <td>action</td>
+    <th>Title</th>
+    <th>Location</th>
+    <th>Actions</th>
   </tr>
-  {% for c in list %}
+  {% for c in object_list %}
   <tr>
-    <td>{{c.name}}</td>
-    <td>{{c.location}}</td>
+    <td>{{ c.name }}</td>
+    <td>{{ c.location }}</td>
     <td>
-      <a href="{%  url 'ConferenceDetails' c.pk %}">détails</a>
+      <a href="{% url 'ConferenceApp:ConferenceDetails' c.pk %}">Détails</a>
+      {% if user.is_authenticated and user.role == "commitee"%}
+      <a href="{% url 'ConferenceApp:ConferenceUpdate' c.pk %}">Modifier</a>
+      <a href="{% url 'ConferenceApp:ConferenceDelete' c.pk %}">Supprimer</a>
+      {% endif %}
     </td>
   </tr>
-
-
-
   {% endfor %}
-</Table>
+</table>
+
+
+
+<a href="{% url 'ConferenceApp:ConferenceAdd' %}">Ajouter une conférence</a>
+{% endblock content %}

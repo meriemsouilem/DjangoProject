@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Voulez-vous supprimer la conférence {{ object.name }} ?</h2>
+
+<form method="post">
+  {% csrf_token %}
+  <button type="submit">OUI</button>
+  <a href="{% url 'ConferenceApp:ConferenceList' %}">NON</a>
+</form>
+{% endblock content %}

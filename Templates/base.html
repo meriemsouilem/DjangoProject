@@ -1,0 +1,19 @@
+<html>
+
+<body>
+  <nav>
+    <a>Home</a>
+    <a href="{% url 'ConferenceApp:list_conference' %}">Conférences</a>
+  </nav>
+  <div>
+    {% block content %}
+    {% endblock %}
+  </div>
+  <footer>
+    <p>© 2024 Conference Management. All rights reserved.</p>
+  </footer>
+</body>
+
+</html>
+
+
